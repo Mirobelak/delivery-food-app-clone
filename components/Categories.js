@@ -10,10 +10,16 @@ const Categories = () => {
         showsHorizontalScrollIndicator={false} 
         contentContainerStyle={{paddingHorizontal: 15, paddingTop: 10}}
         >
-            <CategoryCard imgUrl="https://links.papareact.com/wru" title="Testing" />
-            <CategoryCard imgUrl="https://links.papareact.com/wru"
+            <CategoryCard imgUrl="https://links.papareact.com/gn7" title="Testing" />
+            <CategoryCard imgUrl="https://links.papareact.com/gn7"
             title="Testing"/>
-            <CategoryCard imgUrl="https://links.papareact.com/wru"
+            <CategoryCard imgUrl="https://links.papareact.com/gn7"
+            title="Testing"/>
+            <CategoryCard imgUrl="https://links.papareact.com/gn7"
+            title="Testing"/>
+            <CategoryCard imgUrl="https://links.papareact.com/gn7"
+            title="Testing"/>
+            <CategoryCard imgUrl="https://links.papareact.com/gn7"
             title="Testing"/>
         </ScrollView>
     );

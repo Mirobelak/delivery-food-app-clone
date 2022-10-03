@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useLayoutEffect } from 'react';
 import {View, Text, SafeAreaView, Image, TextInput, ScrollView } from 'react-native';
 import Categories from '../components/Categories';
+import FeaturedRow from '../components/FeaturedRow';
 
 
 const HomeScreen = () => {
@@ -41,8 +42,26 @@ const HomeScreen = () => {
 
             <ScrollView className="bg-gray-100" contentContainerStyle={{paddingBottom: 100}} >
 
-                
+
                 <Categories/>
+                <FeaturedRow
+                id="1"
+                title="Featured"
+                description="Paid Placements from our partners"
+                featuredCategory="featured"
+                />
+                <FeaturedRow
+                id="2"
+                title="Tasty discounts"
+                description="Everybody love discounts"
+                featuredCategory="discounts"
+                />
+                <FeaturedRow
+                id="3"
+                title="Offers near you"
+                description="Support your local restaurants"
+                featuredCategory="offers"
+                />
             </ScrollView>
         </SafeAreaView>
     );
