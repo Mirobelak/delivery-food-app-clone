@@ -31,9 +31,9 @@ const FeaturedRow = ({title, description, id}) => {
         <Text className="text-xs px-4 text-gray-500 " >{description}</Text>
         <ScrollView horizontal contentContainerStyle={{paddingHorizontal: 15}} showsHorizontalScrollIndicator={false} className="pt-4">
 
-        {restaurants?.map((restaurant) => (
+        {restaurants?.map((restaurant,idx) => (
               <RestaurantCard
-              key={restaurant._id}
+              key={idx}
               id ={restaurant._id}
               imgUrl={restaurant.image}
               address={restaurant.address}
