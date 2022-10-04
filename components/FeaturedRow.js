@@ -1,8 +1,27 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import RestaurantCard from './RestaurantCard';
+import sanityClient from '../sanity';
 
 const FeaturedRow = ({title, description, id}) => {
+  const [restaurants, setRestaurants] = useState([]);
+
+    useEffect(() => {
+      sanityClient.fetch(`*[_type == "featured" && _id == $id]{
+        ..., 
+        restaurants[]->{
+          ...,
+          dishes[]->,
+         type->{
+          name
+          }
+        }, 
+      }[0]`, {id}).then((data) => {
+        setRestaurants(data.restaurants);
+      });
+      
+    }, []);
+
     return (
         <View>
         <View className="mt-4 flex-row items-center justify-between px-4">
@@ -11,42 +30,22 @@ const FeaturedRow = ({title, description, id}) => {
         </View>
         <Text className="text-xs px-4 text-gray-500 " >{description}</Text>
         <ScrollView horizontal contentContainerStyle={{paddingHorizontal: 15}} showsHorizontalScrollIndicator={false} className="pt-4">
-        <RestaurantCard
-          id ={123}
-          imgUrl={"https://links.papareact.com/gn7"}
-            title={"Testing"}
-            rating={4.5}
-            genre={"Testing"}
-            address={"Testing"}
-            short_description={"Testing"}
-            dishes={["Testing"]}
-            long={-122.4233}
-            lat={37.78825}
-        />
-        <RestaurantCard
-          id ={123}
-          imgUrl={"https://links.papareact.com/gn7"}
-            title={"Testing"}
-            rating={4.5}
-            genre={"Testing"}
-            address={"Testing"}
-            short_description={"Testing"}
-            dishes={["Testing"]}
-            long={-122.4233}
-            lat={37.78825}
-        />
-        <RestaurantCard
-          id ={123}
-          imgUrl={"https://links.papareact.com/gn7"}
-            title={"Testing"}
-            rating={4.5}
-            genre={"Testing"}
-            address={"Testing"}
-            short_description={"Testing"}
-            dishes={["Testing"]}
-            long={-122.4233}
-            lat={37.78825}
-        />
+
+        {restaurants?.map((restaurant) => (
+              <RestaurantCard
+              key={restaurant._id}
+              id ={restaurant._id}
+              imgUrl={restaurant.image}
+              address={restaurant.address}
+              title={restaurant.name}
+              rating={restaurant.rating}
+              genre={restaurant.type?.name}
+              short_description={restaurant.short_description}
+              dishes={restaurant.dishes}
+              long={restaurant.long} 
+              lat={restaurant.lat}
+            />
+        ))}
         </ScrollView>
         </View>
     );
